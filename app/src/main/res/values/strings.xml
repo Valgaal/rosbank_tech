@@ -7,4 +7,10 @@
     <string name="greeting">Добрый день, %1$s!</string>
     <string name="greeting_info">Насколько мы знаем, для вас основным видом деятельности являются:</string>
     <string name="greeting_info2">А ваши коды ОКВЭД:</string>
+    <string name="profile">Личный кабинет</string>
+    <string name="chat">Чат</string>
+    <string name="events">События</string>
+    <string name="marketplace">Маркетплэйс</string>
+    <string name="qty">Количество: </string>
+    <string name="balance"> %1$,.2f P</string>
 </resources>

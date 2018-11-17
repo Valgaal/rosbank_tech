@@ -14,7 +14,6 @@ public class EntryActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entry);
-        getSupportActionBar().hide();
         Button entryButton = findViewById(R.id.entryButton);
         entryButton.setOnClickListener(view -> {
             Intent intent = new Intent(this, LoginActivity.class);

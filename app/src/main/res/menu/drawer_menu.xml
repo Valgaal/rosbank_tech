@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single" >
+        <item
+            android:id="@+id/profile"
+            android:title="@string/profile"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/marketplace"
+            android:title="@string/marketplace"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/events"
+            android:title="@string/events"
+            android:checkable="true"/>
+        <item
+            android:id="@+id/chat"
+            android:title="@string/chat"
+            android:checkable="true"/>
+    </group>
+
+</menu>
