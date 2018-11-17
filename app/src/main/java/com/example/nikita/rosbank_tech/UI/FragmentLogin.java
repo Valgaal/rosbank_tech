@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
+import com.example.nikita.rosbank_tech.Persistence.UserModel;
 import com.example.nikita.rosbank_tech.Presenters.LoginPresenter;
 import com.example.nikita.rosbank_tech.R;
 import com.example.nikita.rosbank_tech.views.LoginView;
@@ -34,7 +35,7 @@ public class FragmentLogin extends MvpAppCompatFragment implements LoginView {
     }
 
     public interface LoginCallback{
-        void loginSuccess();
+        void loginSuccess(UserModel userModel);
     }
 
     @Nullable
@@ -55,8 +56,8 @@ public class FragmentLogin extends MvpAppCompatFragment implements LoginView {
     }
 
     @Override
-    public void login() {
-        loginCallback.loginSuccess();
+    public void login(UserModel userModel) {
+        loginCallback.loginSuccess(userModel);
     }
 
     @Override

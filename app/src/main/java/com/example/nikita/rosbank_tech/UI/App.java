@@ -25,7 +25,7 @@ public class App extends Application {
         return DaggerAppComponent.builder()
                 .networkModule(new NetworkModule())
                 .dbModule(new DbModule(getApplicationContext()))
-                .dataModule(new DataModule())
+                .dataModule(new DataModule(getApplicationContext()))
                 .build();
     }
 

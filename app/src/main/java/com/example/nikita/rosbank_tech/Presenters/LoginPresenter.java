@@ -42,7 +42,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                                    @Override
                                    public void onSuccess(UserModel userModel) {
                                        getViewState().finishLoading();
-                                       getViewState().login();
+                                       getViewState().login(userModel);
                                    }
 
                                    @Override

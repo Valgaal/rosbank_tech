@@ -15,6 +15,7 @@ import android.widget.ProgressBar;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.arellomobile.mvp.presenter.ProvidePresenter;
 import com.example.nikita.rosbank_tech.Persistence.DataRepository;
+import com.example.nikita.rosbank_tech.Persistence.UserModel;
 import com.example.nikita.rosbank_tech.Presenters.LoginPresenter;
 import com.example.nikita.rosbank_tech.R;
 import com.example.nikita.rosbank_tech.Utils.NetworkUtils;
@@ -36,8 +37,8 @@ public class LoginActivity extends AppCompatActivity implements FragmentLogin.Lo
     }
 
     @Override
-    public void loginSuccess() {
-        Fragment fragment = new FragmentSelectCategory();
+    public void loginSuccess(UserModel userModel) {
+        Fragment fragment = FragmentSelectCategory.newInstance(userModel);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
