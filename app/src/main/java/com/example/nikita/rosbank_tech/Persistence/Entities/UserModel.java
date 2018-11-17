@@ -1,4 +1,4 @@
-package com.example.nikita.rosbank_tech.Persistence;
+package com.example.nikita.rosbank_tech.Persistence.Entities;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.nikita.rosbank_tech.Models.LoginResponse;
 import com.example.nikita.rosbank_tech.Models.UserAuth;
+import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
 import com.example.nikita.rosbank_tech.R;
 import com.example.nikita.rosbank_tech.Utils.NetworkUtils;
 

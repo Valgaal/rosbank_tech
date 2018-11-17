@@ -2,5 +2,9 @@
     <string name="app_name">rosbank_tech</string>
     <string name="work_name">Продажа фейрверков</string>
     <string name="btn_enter">ВОЙТИ</string>
+    <string name="btn_done">ГОТОВО</string>
     <string name="promo_text">Как здорово что вы с нами!</string>
+    <string name="greeting">Добрый день, %1$s!</string>
+    <string name="greeting_info">Насколько мы знаем, для вас основным видом деятельности являются:</string>
+    <string name="greeting_info2">А ваши коды ОКВЭД:</string>
 </resources>

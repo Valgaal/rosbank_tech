@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.example.nikita.rosbank_tech.Models.UserAuth;
 import com.example.nikita.rosbank_tech.Persistence.DataRepository;
-import com.example.nikita.rosbank_tech.Persistence.UserModel;
+import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
 import com.example.nikita.rosbank_tech.UI.App;
 import com.example.nikita.rosbank_tech.Utils.NetworkUtils;
 import com.example.nikita.rosbank_tech.views.LoginView;
@@ -13,7 +13,6 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableSingleObserver;
 
 @InjectViewState
