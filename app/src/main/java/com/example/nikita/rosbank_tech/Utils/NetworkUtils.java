@@ -9,7 +9,7 @@ public class NetworkUtils {
 
     private WebApi webApi;
 
-    private static final String BASE_URL = "https://www.google.com/";
+    private static final String BASE_URL = "https://bankonline.azurewebsites.net/";
 
     public NetworkUtils(){
         Retrofit retrofit = new Retrofit.Builder()

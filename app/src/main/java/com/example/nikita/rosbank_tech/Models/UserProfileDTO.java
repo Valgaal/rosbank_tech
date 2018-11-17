@@ -1,22 +1,10 @@
-package com.example.nikita.rosbank_tech.Persistence;
+package com.example.nikita.rosbank_tech.Models;
 
-import android.arch.persistence.room.ColumnInfo;
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-@Entity(tableName = "user_info")
-public class UserModel {
-
-    @PrimaryKey
+public class UserProfileDTO {
     private Long id;
-
-    @ColumnInfo(name = "Name")
+    private String login;
     private String name;
-
-    @ColumnInfo(name = "CardNumber")
     private Long cardNumber;
-
-    @ColumnInfo(name = "Balance")
     private Double balance;
 
     public Long getId() {
@@ -25,6 +13,14 @@ public class UserModel {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getName() {

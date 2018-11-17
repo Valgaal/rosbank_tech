@@ -2,6 +2,7 @@ package com.example.nikita.rosbank_tech.Persistence;
 
 import android.arch.persistence.room.TypeConverter;
 
+import com.example.nikita.rosbank_tech.Models.LoginResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

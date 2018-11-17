@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.nikita.rosbank_tech.DI.AppComponent;
 import com.example.nikita.rosbank_tech.DI.DaggerAppComponent;
+import com.example.nikita.rosbank_tech.DI.DataModule;
 import com.example.nikita.rosbank_tech.DI.DbModule;
 import com.example.nikita.rosbank_tech.DI.NetworkModule;
 
@@ -24,6 +25,7 @@ public class App extends Application {
         return DaggerAppComponent.builder()
                 .networkModule(new NetworkModule())
                 .dbModule(new DbModule(getApplicationContext()))
+                .dataModule(new DataModule())
                 .build();
     }
 
