@@ -33,7 +33,6 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
 
     public void buttonClicked(String email, String password){
         getViewState().showLoading();
-        getViewState().finishLoading();
         UserAuth userAuth = new UserAuth();
         userAuth.setLogin(email);
         userAuth.setPassword(password);
@@ -49,6 +48,7 @@ public class LoginPresenter extends MvpPresenter<LoginView> {
                                    @Override
                                    public void onError(Throwable e) {
                                        getViewState().finishLoading();
+                                       getViewState().showError(e.toString());
                                    }
                                }));
     }

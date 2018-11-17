@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,47 +22,23 @@ import com.example.nikita.rosbank_tech.views.LoginView;
 
 import javax.inject.Inject;
 
-public class LoginActivity extends MvpAppCompatActivity implements LoginView {
-
-    @InjectPresenter
-    LoginPresenter mLoginPresenter;
-
-    ProgressBar mProgressBar;
-
-    @ProvidePresenter
-    LoginPresenter provideLoginPresenter(){
-        return new LoginPresenter();
-    }
+public class LoginActivity extends AppCompatActivity implements FragmentLogin.LoginCallback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         getSupportActionBar().hide();
-        EditText email = findViewById(R.id.email);
-        EditText password = findViewById(R.id.password);
-        Button loginButton = findViewById(R.id.loginButton);
-        mProgressBar = findViewById(R.id.progressBar);
-
-        loginButton.setOnClickListener(view -> {
-            mLoginPresenter.buttonClicked(email.getText().toString(), password.getText().toString());
-        });
-    }
-
-    @Override
-    public void login() {
-        Fragment fragment = new FragmentSelectCategory();
+        Fragment fragment = new FragmentLogin();
+        ((FragmentLogin) fragment).setLoginCallback(this);
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().add(R.id.fragment_container, fragment).commit();
     }
 
     @Override
-    public void showLoading() {
-        mProgressBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void finishLoading() {
-        mProgressBar.setVisibility(View.GONE);
+    public void loginSuccess() {
+        Fragment fragment = new FragmentSelectCategory();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
     }
 }

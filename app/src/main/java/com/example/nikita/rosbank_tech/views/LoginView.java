@@ -9,4 +9,5 @@ public interface LoginView extends MvpView {
     void login();
     void showLoading();
     void finishLoading();
+    void showError(String error);
 }
