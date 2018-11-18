@@ -3,6 +3,7 @@ package com.example.nikita.rosbank_tech.UI;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,19 +15,25 @@ import android.widget.TextView;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.example.nikita.rosbank_tech.Adapters.OkvedAdapter;
+import com.example.nikita.rosbank_tech.Persistence.DataRepository;
 import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
 import com.example.nikita.rosbank_tech.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class FragmentSelectCategory extends MvpAppCompatFragment implements OkvedAdapter.CheckBoxListener{
+import javax.inject.Inject;
+
+public class FragmentSelectCategory extends Fragment implements OkvedAdapter.CheckBoxListener{
 
     private static final String USER = "UserModel";
     private static final String CALLBACK = "Callback";
 
     private ArrayList<String> tempList = new ArrayList<>();
     private OkvedCallback mCallback;
+
+    @Inject
+    DataRepository dataRepository;
 
     public interface OkvedCallback extends Serializable {
         void okvedChosen(UserModel userModel);
@@ -36,6 +43,7 @@ public class FragmentSelectCategory extends MvpAppCompatFragment implements Okve
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_selected_category, container, false);
         Bundle bundle = this.getArguments();
+        App.getComponent().inject(this);
         UserModel userModel = (UserModel) bundle.getSerializable(USER);
         mCallback = (OkvedCallback) bundle.getSerializable(CALLBACK);
 
@@ -53,6 +61,7 @@ public class FragmentSelectCategory extends MvpAppCompatFragment implements Okve
         done.setOnClickListener(view1 -> {
             userModel.setWork(work.getText().toString());
             userModel.setOkved(tempList);
+            dataRepository.updateUserModel(userModel);
             mCallback.okvedChosen(userModel);
         });
         return view;

@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.nikita.rosbank_tech.Models.OperationsResponseDTO;
+import com.example.nikita.rosbank_tech.Models.PaymentResponse;
 import com.example.nikita.rosbank_tech.Persistence.Entities.UserTransaction;
 import com.example.nikita.rosbank_tech.R;
 import com.squareup.picasso.Picasso;
@@ -16,9 +18,9 @@ import java.util.List;
 
 public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.ViewHolder> {
 
-    private List<UserTransaction> userTransactions;
+    private List<OperationsResponseDTO> userTransactions;
 
-    public ChangesAdapter(List<UserTransaction> userTransactions){
+    public ChangesAdapter(List<OperationsResponseDTO> userTransactions){
             this.userTransactions = userTransactions;
     }
 
@@ -31,6 +33,12 @@ public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+        OperationsResponseDTO operationResponse = userTransactions.get(i);
+        //Picasso.get().load(operationResponse.get)
+        viewHolder.productName.setText(operationResponse.getProduct());
+        viewHolder.categoryName.setText(operationResponse.getDate());
+        viewHolder.count.setText("1");
+        viewHolder.setPrice(operationResponse.getAmount());
     }
 
     @Override
@@ -53,6 +61,10 @@ public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.ViewHold
             categoryName = itemView.findViewById(R.id.categoryName);
             count = itemView.findViewById(R.id.count);
             price = itemView.findViewById(R.id.price);
+        }
+
+        void setPrice(Double value){
+            price.setText(String.format(itemView.getContext().getString(R.string.balance), value));
         }
     }
 

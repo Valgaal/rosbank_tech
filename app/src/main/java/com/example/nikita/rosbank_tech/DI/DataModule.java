@@ -1,6 +1,7 @@
 package com.example.nikita.rosbank_tech.DI;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.example.nikita.rosbank_tech.Persistence.DataRepository;
 import com.example.nikita.rosbank_tech.Persistence.RoomDb;
@@ -22,7 +23,14 @@ public class DataModule {
 
     @Provides
     @Singleton
-    public DataRepository provideDataRepository(NetworkUtils networkUtils, RoomDb roomDb){
-        return new DataRepository(networkUtils, roomDb, mContext);
+    public DataRepository provideDataRepository(NetworkUtils networkUtils, RoomDb roomDb, SharedPreferences sharedPreferences){
+        return new DataRepository(networkUtils, roomDb, mContext, sharedPreferences);
     }
+
+    @Provides
+    @Singleton
+    public SharedPreferences provideSharedPreferences() {
+        return mContext.getSharedPreferences("PrefName",Context.MODE_PRIVATE);
+    }
+
 }

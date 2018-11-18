@@ -13,14 +13,22 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
+import com.example.nikita.rosbank_tech.Persistence.DataRepository;
 import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
 import com.example.nikita.rosbank_tech.R;
 import com.example.nikita.rosbank_tech.UI.LoginActivity;
+
+import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
 
 public class ProfileActivity extends MvpAppCompatActivity {
 
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +83,7 @@ public class ProfileActivity extends MvpAppCompatActivity {
                 fragment = ProfileFragment.newInstance(userModel);
                 break;
             case 1:
-                fragment = new MarketPlaceFragment();
+                fragment = MarketPlaceFragment.newInstance(userModel);
                 break;
             case 2:
                 Toast.makeText(this,"Click", Toast.LENGTH_SHORT).show();
@@ -90,4 +98,5 @@ public class ProfileActivity extends MvpAppCompatActivity {
 
         }
     }
+
 }
