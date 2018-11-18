@@ -15,6 +15,9 @@ public class UserModel implements Serializable {
     @PrimaryKey
     private Long id;
 
+    @ColumnInfo(name = "Login")
+    private String login;
+
     @ColumnInfo(name = "Name")
     private String name;
 
@@ -76,5 +79,13 @@ public class UserModel implements Serializable {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 }

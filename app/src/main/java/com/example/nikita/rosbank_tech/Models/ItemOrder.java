@@ -1,6 +1,8 @@
 package com.example.nikita.rosbank_tech.Models;
 
-public class ItemOrder{
+import java.io.Serializable;
+
+public class ItemOrder implements Serializable {
     private Long id;
     private Integer count;
 

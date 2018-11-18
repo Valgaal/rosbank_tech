@@ -2,17 +2,17 @@ package com.example.nikita.rosbank_tech.Models;
 
 public class CardOwner{
 
-    private Integer cardNumber;
+    private Long cardNumber;
     private Integer cvc;
     private String mmyy;
     private String ownerName;
     private String phoneNumber;
 
-    public Integer getCardNumber() {
+    public Long getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Integer cardNumber) {
+    public void setCardNumber(Long cardNumber) {
         this.cardNumber = cardNumber;
     }
 

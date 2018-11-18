@@ -1,6 +1,6 @@
 package com.example.nikita.rosbank_tech.Models;
 
-public class PaymentResponse {
+public class PaymentRequest {
     private String login;
     private ItemOrder product;
     private CardOwner cardInfo;

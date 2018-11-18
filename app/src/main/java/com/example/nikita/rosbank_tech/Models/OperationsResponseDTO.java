@@ -9,6 +9,24 @@ public class OperationsResponseDTO {
     private Double amount;
     private String status;
     private String user;
+    private String count;
+    private String image;
+
+    public String getCount() {
+        return count;
+    }
+
+    public void setCount(String count) {
+        this.count = count;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 
     public Long getId() {
         return id;

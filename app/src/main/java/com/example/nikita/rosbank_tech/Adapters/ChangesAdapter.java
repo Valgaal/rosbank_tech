@@ -9,8 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.nikita.rosbank_tech.Models.OperationsResponseDTO;
-import com.example.nikita.rosbank_tech.Models.PaymentResponse;
-import com.example.nikita.rosbank_tech.Persistence.Entities.UserTransaction;
 import com.example.nikita.rosbank_tech.R;
 import com.squareup.picasso.Picasso;
 
@@ -34,7 +32,7 @@ public class ChangesAdapter extends RecyclerView.Adapter<ChangesAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
         OperationsResponseDTO operationResponse = userTransactions.get(i);
-        //Picasso.get().load(operationResponse.get)
+        Picasso.get().load(operationResponse.getImage()).into(viewHolder.photo);
         viewHolder.productName.setText(operationResponse.getProduct());
         viewHolder.categoryName.setText(operationResponse.getDate());
         viewHolder.count.setText("1");

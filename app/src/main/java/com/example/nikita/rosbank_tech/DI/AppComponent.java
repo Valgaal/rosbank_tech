@@ -3,6 +3,7 @@ package com.example.nikita.rosbank_tech.DI;
 import com.example.nikita.rosbank_tech.Presenters.LoginPresenter;
 import com.example.nikita.rosbank_tech.UI.FragmentSelectCategory;
 import com.example.nikita.rosbank_tech.UI.LoginActivity;
+import com.example.nikita.rosbank_tech.UI.Profile.FragmentPayment;
 import com.example.nikita.rosbank_tech.UI.Profile.MarketPlaceFragment;
 import com.example.nikita.rosbank_tech.UI.Profile.ProfileFragment;
 
@@ -17,4 +18,5 @@ public interface AppComponent {
     void inject(FragmentSelectCategory fragmentSelectCategory);
     void inject(MarketPlaceFragment marketPlaceFragment);
     void inject(ProfileFragment profileFragment);
+    void inject(FragmentPayment fragmentPayment);
 }

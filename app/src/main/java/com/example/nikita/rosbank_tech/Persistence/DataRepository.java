@@ -3,11 +3,11 @@ package com.example.nikita.rosbank_tech.Persistence;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.nikita.rosbank_tech.Models.CategoryModel;
 import com.example.nikita.rosbank_tech.Models.LoginResponse;
 import com.example.nikita.rosbank_tech.Models.OperationsResponseDTO;
-import com.example.nikita.rosbank_tech.Models.PaymentResponse;
+import com.example.nikita.rosbank_tech.Models.PaymentRequest;
 import com.example.nikita.rosbank_tech.Models.ProductModel;
+import com.example.nikita.rosbank_tech.Models.ResponseBuy;
 import com.example.nikita.rosbank_tech.Models.UserAuth;
 import com.example.nikita.rosbank_tech.Models.UserPrefs;
 import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
@@ -16,15 +16,12 @@ import com.example.nikita.rosbank_tech.Utils.NetworkUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import io.reactivex.Completable;
-import io.reactivex.Observable;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DataRepository {
@@ -89,5 +86,9 @@ public class DataRepository {
 
     public Single<List<OperationsResponseDTO>> getPayment(){
         return networkUtils.getWebApi().getPayment(sharedPreferences.getString(TOKEN, ""));
+    }
+
+    public Single<ResponseBuy> buyProduct(PaymentRequest paymentRequest){
+        return networkUtils.getWebApi().buyProduct(sharedPreferences.getString(TOKEN, ""), paymentRequest);
     }
 }

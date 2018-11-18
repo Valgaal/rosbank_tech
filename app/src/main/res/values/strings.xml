@@ -13,4 +13,7 @@
     <string name="marketplace">Маркетплэйс</string>
     <string name="qty">Количество: </string>
     <string name="balance"> %1$,.2f P</string>
+    <string name="btn_pay">Купить</string>
+    <string name="success">Успешно</string>
+    <string name="error">Ошибка</string>
 </resources>

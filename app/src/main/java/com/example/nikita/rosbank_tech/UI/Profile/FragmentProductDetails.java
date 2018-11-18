@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.nikita.rosbank_tech.Models.ItemOrder;
 import com.example.nikita.rosbank_tech.Models.ProductModel;
 import com.example.nikita.rosbank_tech.R;
 import com.squareup.picasso.Picasso;
@@ -39,7 +41,12 @@ public class FragmentProductDetails extends Fragment {
         description.setText(productModel.getDescription());
         partner.setText(productModel.getPartner());
         buyButton.setOnClickListener(view1 -> {
-            Integer.valueOf(editText.getText().toString());
+            ItemOrder itemOrder = new ItemOrder();
+            itemOrder.setCount(Integer.valueOf(editText.getText().toString()));
+            itemOrder.setId(productModel.getId());
+            Fragment fragment = FragmentPayment.newInstance(itemOrder);
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.fragment_container, fragment).commit();
         });
 
 

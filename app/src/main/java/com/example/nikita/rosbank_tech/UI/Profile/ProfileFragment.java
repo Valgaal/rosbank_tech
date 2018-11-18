@@ -1,6 +1,5 @@
 package com.example.nikita.rosbank_tech.UI.Profile;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,20 +14,15 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.example.nikita.rosbank_tech.Adapters.ChangesAdapter;
-import com.example.nikita.rosbank_tech.Models.OperationsResponseDTO;
-import com.example.nikita.rosbank_tech.Models.PaymentResponse;
 import com.example.nikita.rosbank_tech.Persistence.DataRepository;
 import com.example.nikita.rosbank_tech.Persistence.Entities.UserModel;
 import com.example.nikita.rosbank_tech.R;
 import com.example.nikita.rosbank_tech.UI.App;
 
-import java.util.ArrayList;
-
 import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
 
 public class ProfileFragment extends MvpAppCompatFragment {
 
@@ -36,41 +30,33 @@ public class ProfileFragment extends MvpAppCompatFragment {
 
     private SwipeRefreshLayout mSwipe;
     private CompositeDisposable disposable = new CompositeDisposable();
+    private RecyclerView recyclerView;
 
     @Inject
     DataRepository dataRepository;
-
-    private ArrayList<OperationsResponseDTO> paymentResponses = new ArrayList<>();
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         TextView balance = view.findViewById(R.id.balance);
-        RecyclerView recyclerView = view.findViewById(R.id.rv_changes);
+        recyclerView = view.findViewById(R.id.rv_changes);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mSwipe = view.findViewById(R.id.swipe_refresh);
         App.getComponent().inject(this);
         Bundle bundle = this.getArguments();
         UserModel userModel = (UserModel) bundle.getSerializable(PROFILE);
-        ChangesAdapter changesAdapter = new ChangesAdapter(paymentResponses);
-        recyclerView.setAdapter(changesAdapter);
         balance.setText(String.format(getString(R.string.balance), userModel.getBalance()));
+
+        checkForOperationUpdates();
 
         mSwipe.setOnRefreshListener(() -> {
             mSwipe.setRefreshing(true);
-            disposable.add(dataRepository.getPayment()
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(paymentResponse -> {
-                            paymentResponses = (ArrayList) paymentResponse;
-                            changesAdapter.notifyDataSetChanged();
-                            mSwipe.setRefreshing(false);
+            checkForOperationUpdates();
 
-                    },
-                            throwable -> Toast.makeText(getActivity(), throwable.toString(), Toast.LENGTH_SHORT).show()));
             disposable.add(dataRepository.getActualInfo()
                         .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(actualUserModel -> {
+                        .subscribe(actualUserModel -> {
                                     balance.setText(String.format(getString(R.string.balance), actualUserModel.getBalance()));
 
                                 },
@@ -85,5 +71,17 @@ public class ProfileFragment extends MvpAppCompatFragment {
         bundle.putSerializable(ProfileFragment.PROFILE, userModel );
         fragment.setArguments(bundle);
         return fragment;
+    }
+
+    private void checkForOperationUpdates(){
+        disposable.add(dataRepository.getPayment()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(paymentResponse -> {
+                            ChangesAdapter changesAdapter = new ChangesAdapter(paymentResponse);
+                            recyclerView.setAdapter(changesAdapter);
+                            mSwipe.setRefreshing(false);
+
+                        },
+                        throwable -> Toast.makeText(getActivity(), throwable.toString(), Toast.LENGTH_SHORT).show()));
     }
 }
